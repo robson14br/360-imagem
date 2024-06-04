@@ -67,9 +67,9 @@
       container.addEventListener("touchmove", (evento) => {
         if (!cursor.isDragging) return;
 
-        const deslocamento = cursor.initialPosition - evento.touches[0].clientX;
-        if (Math.abs(deslocamento) >= 40) {
-          atualizarImagem(deslocamento);
+        const offset  = cursor.initialPosition - evento.touches[0].clientX;
+        if (Math.abs(offset) >= 40) {
+            updateImage(offset);
           cursor.initialPosition = evento.touches[0].clientX;
         }
       });
