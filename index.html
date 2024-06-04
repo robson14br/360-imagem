@@ -65,18 +65,18 @@
 
       // Movimento do toque
       container.addEventListener("touchmove", (evento) => {
-        if (!cursor.isArrastando) return;
+        if (!cursor.isDragging) return;
 
-        const deslocamento = cursor.posicaoInicial - evento.touches[0].clientX;
+        const deslocamento = cursor.initialPosition - evento.touches[0].clientX;
         if (Math.abs(deslocamento) >= 40) {
           atualizarImagem(deslocamento);
-          cursor.posicaoInicial = evento.touches[0].clientX;
+          cursor.initialPosition = evento.touches[0].clientX;
         }
       });
 
       // Fim do arraste com toque
       container.addEventListener("touchend", () => {
-        cursor.isArrastando = false;
+        cursor.isDragging = false;
       });
     </script>
   </body>
