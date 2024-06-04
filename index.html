@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <title>360 imagem</title>
     <link rel="stylesheet" href="style.css" />
   </head>
 
@@ -23,7 +23,7 @@
 
       let currentImage = 1;
 
-      updateImage = (direction) => {
+      const updateImage = (direction) => {
         if (direction < 0) {
           if (currentImage == 12) {
             currentImage = 1;
@@ -42,7 +42,8 @@
 
         image.src = `imagem/${currentImage}.jpg`;
       };
-      // Movimento do click
+
+      // Mouse click evento
       container.addEventListener("mousedown", (event) => {
         cursor.isDragging = true;
         cursor.initialPosition = event.clientX;
@@ -63,21 +64,25 @@
         }
       });
 
-      // Movimento do toque
-      container.addEventListener("touchmove", (evento) => {
+      // Movimento Touch
+      container.addEventListener("touchstart", (event) => {
+        cursor.isDragging = true;
+        cursor.initialPosition = event.touches[0].clientX;
+      });
+
+      container.addEventListener("touchmove", (event) => {
         if (!cursor.isDragging) return;
 
-        const offset  = cursor.initialPosition - evento.touches[0].clientX;
+        const offset = cursor.initialPosition - event.touches[0].clientX;
+
         if (Math.abs(offset) >= 40) {
-            updateImage(offset);
-          cursor.initialPosition = evento.touches[0].clientX;
+          updateImage(offset);
+          cursor.initialPosition = event.touches[0].clientX;
         }
       });
 
-      // Fim do arraste com toque
       container.addEventListener("touchend", () => {
         cursor.isDragging = false;
       });
     </script>
   </body>
-</html>
